@@ -18,19 +18,24 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("/cars")
+    /*@GetMapping("/cars")
     public String getCars(Model model){
 
             model.addAttribute("cars", carService.getCars());
             return "cars";
-    }
+    }*/
 
-    @GetMapping("/car")
-    public String getCars(@RequestParam(value = "count", required = false) int count,
+    @GetMapping("/cars")
+    public String getCars(@RequestParam(value = "count",required = false) int count,
                           Model model){
+        if (count > 0 || count < 5) {
 
-        model.addAttribute("cars", carService.getCarsCount(count));
-        return "cars";
+            model.addAttribute("cars", carService.getCarsCount(count));
+            return "cars";
+        }else {
+            model.addAttribute("cars", carService.getCars());
+            return "cars";
+        }
     }
 
 

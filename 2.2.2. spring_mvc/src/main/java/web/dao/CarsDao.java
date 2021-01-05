@@ -5,6 +5,7 @@ import web.models.CarModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class CarsDao {
@@ -24,9 +25,9 @@ public class CarsDao {
     }
     public List<CarModel> getCarsCount(int count){
         List<CarModel> carsNew = new ArrayList<>();
-        carsNew.add(new CarModel(count, "fgfg", "ffgfg"));
-        //System.arraycopy(cars, 0, carsNew, 0, count);
+        carsNew = cars.stream().limit(count).collect(Collectors.toList());
         return carsNew;
+
 
     }
 }
