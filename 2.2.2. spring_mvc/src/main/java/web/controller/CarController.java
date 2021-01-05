@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import web.service.CarService;
 
 @Controller
-
 public class CarController {
+
     private CarService carService;
 
     @Autowired
@@ -18,15 +18,8 @@ public class CarController {
         this.carService = carService;
     }
 
-    /*@GetMapping("/cars")
-    public String getCars(Model model){
-
-            model.addAttribute("cars", carService.getCars());
-            return "cars";
-    }*/
-
     @GetMapping("/cars")
-    public String getCars(@RequestParam(value = "count",required = false) int count,
+    public String getCars(@RequestParam(value = "count",defaultValue = "5") int count,
                           Model model){
         if (count > 0 || count < 5) {
 
